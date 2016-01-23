@@ -24,14 +24,17 @@ var r = require('r-dom');
 var assign = require('object-assign');
 
 var HTMLOverlay = React.createClass({
+
   displayName: 'HTMLOverlay',
+
   propTypes: {
-    width: React.PropTypes.number,
-    height: React.PropTypes.number,
-    redraw: React.PropTypes.func,
-    project: React.PropTypes.func,
-    isDragging: React.PropTypes.bool
+    width: React.PropTypes.number.isRequired,
+    height: React.PropTypes.number.isRequired,
+    redraw: React.PropTypes.func.isRequired,
+    project: React.PropTypes.func.isRequired,
+    isDragging: React.PropTypes.bool.isRequired
   },
+
   render: function render() {
     var style = assign({}, {
       position: 'absolute',

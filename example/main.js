@@ -20,6 +20,7 @@
 'use strict';
 
 var document = require('global/document');
+var ReactDOM = require('react-dom');
 var React = require('react');
 var r = require('r-dom');
 var window = require('global/window');
@@ -34,6 +35,11 @@ var RouteExample = require('./examples/route.react');
 function getAccessToken() {
   var match = window.location.search.match(/access_token=([^&\/]*)/);
   var accessToken = match && match[1];
+  if (!accessToken) {
+    /* eslint-disable no-process-env */
+    accessToken = process.env.MapboxAccessToken;
+    /* eslint-enable no-process-env */
+  }
   if (accessToken) {
     window.localStorage.accessToken = accessToken;
   } else {
@@ -64,4 +70,6 @@ var App = React.createClass({
   }
 });
 
-React.render(r(App), document.body);
+var reactContainer = document.createElement('div');
+document.body.appendChild(reactContainer);
+ReactDOM.render(r(App), reactContainer);
